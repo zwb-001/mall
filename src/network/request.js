@@ -9,7 +9,7 @@ export function request(config) {
 
   // 2.axios的拦截器
   // 2.1.请求拦截的作用
-  instance.interceptors.request.use(config => {
+  /*instance.interceptors.request.use(config => {
     return config
   }, err => {
     // console.log(err);
@@ -20,7 +20,7 @@ export function request(config) {
     return res.data
   }, err => {
     console.log(err);
-  })
+  })*/
 
   // 3.发送真正的网络请求
   return instance(config)
