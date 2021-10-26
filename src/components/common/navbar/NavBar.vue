@@ -27,17 +27,14 @@ export default {
 
   .nav-left {
     width: 70px;
-    background-color: red;
   }
 
   .nav-center {
     flex: 1;
-    background-color: blue;
   }
 
   .nav-right {
     width: 70px;
-    background-color: green;
   }
 }
 </style>

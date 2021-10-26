@@ -1,11 +1,14 @@
 <template>
   <div id="home">
-    <nav-bar></nav-bar>
+    <nav-bar class="home-nav">
+      <div slot="nav-center">购物街</div>
+    </nav-bar>
   </div>
 </template>
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
+
 export default {
   name: "Home",
   components: {
@@ -15,5 +18,7 @@ export default {
 </script>
 
 <style scoped>
-
+.home-nav {
+  background-color: hotpink;
+}
 </style>
