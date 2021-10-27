@@ -6,6 +6,7 @@
     <home-swiper :banners="banners"></home-swiper>
     <home-recommend :recommends="recommends"/>
     <home-feature></home-feature>
+    <tab-control class="tab-control" :titles="['流行','新款','精选']"></tab-control>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import HomeSwiper from "./childComps/HomeSwiper";
 import {getHomeMultidata} from "network/home";
 import HomeRecommend from "./childComps/HomeRecommend";
 import HomeFeature from "./childComps/HomeFeature";
+import TabControl from "components/cotent/tabControl/TabControl";
 
 export default {
   name: "Home",
@@ -23,6 +25,7 @@ export default {
     NavBar,
     HomeSwiper,
     HomeFeature,
+    TabControl,
   },
   data() {
     return {
@@ -47,10 +50,18 @@ export default {
 
 .home-nav {
   background-color: deeppink;
+  color: #fff;
+
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   z-index: 9;
 }
+
+.tab-control {
+  position: sticky;
+  top: 44px;
+}
+
 </style>
