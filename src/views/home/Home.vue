@@ -7,13 +7,20 @@
     <home-recommend :recommends="recommends"/>
     <home-feature></home-feature>
     <tab-control class="tab-control" :titles="['流行','新款','精选']"></tab-control>
+  <ul>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>
+    <li>123</li>d
+  </ul>
   </div>
 </template>
 
 <script>
 import NavBar from "components/common/navbar/NavBar";
 import HomeSwiper from "./childComps/HomeSwiper";
-import {getHomeMultidata} from "network/home";
+import {getHomeMultidata, getHomeGoods} from "network/home";
 import HomeRecommend from "./childComps/HomeRecommend";
 import HomeFeature from "./childComps/HomeFeature";
 import TabControl from "components/cotent/tabControl/TabControl";
@@ -30,7 +37,12 @@ export default {
   data() {
     return {
       banners: [],
-      recommends: []
+      recommends: [],
+      goods: {
+        'pop': {page: 0, list: []},
+        'new': {page: 0, list: []},
+        'sell': {page: 0, list: []},
+      }
     }
   },
   created() {
@@ -38,6 +50,10 @@ export default {
     getHomeMultidata().then(res => {
       this.banners = res.data.banner.list;
       this.recommends = res.data.recommend.list;
+    })
+    //请求商品数据
+    getHomeGoods('pop',1).then(res=>{
+      this.pop.list=res.data
     })
   }
 }
