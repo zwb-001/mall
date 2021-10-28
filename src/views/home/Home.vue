@@ -7,13 +7,14 @@
     <home-recommend :recommends="recommends"/>
     <home-feature></home-feature>
     <tab-control class="tab-control" :titles="['流行','新款','精选']"></tab-control>
-  <ul>
-    <li>123</li>
-    <li>123</li>
-    <li>123</li>
-    <li>123</li>
-    <li>123</li>d
-  </ul>
+    <ul>
+      <li>123</li>
+      <li>123</li>
+      <li>123</li>
+      <li>123</li>
+      <li>123</li>
+      d
+    </ul>
   </div>
 </template>
 
@@ -47,14 +48,26 @@ export default {
   },
   created() {
     //1.请求多个数据
-    getHomeMultidata().then(res => {
-      this.banners = res.data.banner.list;
-      this.recommends = res.data.recommend.list;
-    })
+    this.getHomeMultidata()
     //请求商品数据
-    getHomeGoods('pop',1).then(res=>{
-      this.pop.list=res.data
-    })
+    this.getHomeGoods('pop')
+    this.getHomeGoods('new')
+    this.getHomeGoods('sell')
+  },
+  methods: {
+    getHomeMultidata() {
+      getHomeMultidata().then(res => {
+        this.banners = res.data.banner.list;
+        this.recommends = res.data.recommend.list;
+      })
+    },
+    getHomeGoods(type) {
+      const page = this.goods[type].page + 1
+      getHomeGoods(type, page).then(res => {
+        this.goods[type].list.push(...res.data.list)
+        this.goods[type].page += 1
+      })
+    }
   }
 }
 </script>
