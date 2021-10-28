@@ -7,14 +7,9 @@
     <home-recommend :recommends="recommends"/>
     <home-feature></home-feature>
     <tab-control class="tab-control" :titles="['流行','新款','精选']"></tab-control>
-    <ul>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      d
-    </ul>
+    <goods-list :goods="goods['pop'].list">
+
+    </goods-list>
   </div>
 </template>
 
@@ -25,6 +20,7 @@ import {getHomeMultidata, getHomeGoods} from "network/home";
 import HomeRecommend from "./childComps/HomeRecommend";
 import HomeFeature from "./childComps/HomeFeature";
 import TabControl from "components/cotent/tabControl/TabControl";
+import GoodsList from "components/cotent/goods/GoodsList";
 
 export default {
   name: "Home",
@@ -34,6 +30,7 @@ export default {
     HomeSwiper,
     HomeFeature,
     TabControl,
+    GoodsList
   },
   data() {
     return {
