@@ -11,7 +11,7 @@
                  @tabClick="tabClick"
 
     />
-    <goods-list :goods="goods[currentType].list">
+    <goods-list :goods="showGoods">
 
     </goods-list>
   </div>
@@ -46,6 +46,11 @@ export default {
         'sell': {page: 0, list: []},
       },
       currentType: 'pop'
+    }
+  },
+  computed:{
+    showGoods(){
+      return this.goods[this.currentType].list
     }
   },
   created() {
