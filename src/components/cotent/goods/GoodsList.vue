@@ -1,21 +1,21 @@
 <template>
   <div class="goods">
-    <ul>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-    </ul>
+    <goods-list-item v-for="item in goods" :goods-item="item"/>
   </div>
 </template>
 
 <script>
+import GoodsListItem from "./GoodsListItem";
+
 export default {
   name: 'GoodsList',
-  props:{
-    goods:{
-      type:Array,
-      default(){
+  components: {
+    GoodsListItem
+  },
+  props: {
+    goods: {
+      type: Array,
+      default() {
         return []
       }
     }
@@ -24,5 +24,9 @@ export default {
 </script>
 
 <style scoped>
-
+.goods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 </style>
