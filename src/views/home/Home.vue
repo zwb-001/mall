@@ -3,17 +3,17 @@
     <nav-bar class="home-nav">
       <div slot="nav-center">购物街</div>
     </nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
-    <home-recommend :recommends="recommends"/>
-    <home-feature></home-feature>
-    <tab-control class="tab-control"
-                 :titles="['流行','新款','精选']"
-                 @tabClick="tabClick"
+    <scroll class="content">
+      <home-swiper :banners="banners"></home-swiper>
+      <home-recommend :recommends="recommends"/>
+      <home-feature></home-feature>
+      <tab-control class="tab-control"
+                   :titles="['流行','新款','精选']"
+                   @tabClick="tabClick"
 
-    />
-    <goods-list :goods="showGoods">
-
-    </goods-list>
+      />
+      <goods-list :goods="showGoods"/>
+    </scroll>
   </div>
 </template>
 
@@ -25,10 +25,13 @@ import HomeRecommend from "./childComps/HomeRecommend";
 import HomeFeature from "./childComps/HomeFeature";
 import TabControl from "components/cotent/tabControl/TabControl";
 import GoodsList from "components/cotent/goods/GoodsList";
+import Scroll from "components/common/scroll/Scroll";
+import Scroll from "../../components/common/scroll/Scroll";
 
 export default {
   name: "Home",
   components: {
+    Scroll,
     HomeRecommend,
     NavBar,
     HomeSwiper,
