@@ -10,6 +10,11 @@
 	import BScroll from "better-scroll";
 	export default {
 		name: 'Scroll',
+    data() {
+      return {
+        scroll: null
+      }
+    },
 		props: {
 			probeType: {
 				type: Number,
@@ -20,11 +25,7 @@
 				default: false
 			}
 		},
-		data() {
-			return {
-				scroll: null
-			}
-		},
+
 		mounted() {
 			//创建对象
 			this.scroll = new BScroll (this.$refs.wrapper,{

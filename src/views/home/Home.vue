@@ -4,9 +4,9 @@
       <div slot="nav-center">购物街</div>
     </nav-bar>
     <scroll class="content">
-      <home-swiper :banners="banners"></home-swiper>
+      <home-swiper :banners="banners"/>
       <home-recommend :recommends="recommends"/>
-      <home-feature></home-feature>
+      <home-feature/>
       <tab-control class="tab-control"
                    :titles="['流行','新款','精选']"
                    @tabClick="tabClick"
@@ -32,13 +32,13 @@ import Scroll from "components/common/scroll/Scroll";
 export default {
   name: "Home",
   components: {
-    Scroll,
     HomeRecommend,
     NavBar,
     HomeSwiper,
     HomeFeature,
     TabControl,
-    GoodsList
+    GoodsList,
+    Scroll
   },
   data() {
     return {
@@ -123,6 +123,11 @@ export default {
   position: sticky;
   top: 44px;
   z-index: 9;
+}
+.content{
+  height: calc(100% - 93px);
+  overflow: hidden;
+  margin-top: 44px;
 }
 
 </style>
