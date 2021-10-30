@@ -23,10 +23,11 @@ import HomeSwiper from "./childComps/HomeSwiper";
 import {getHomeMultidata, getHomeGoods} from "network/home";
 import HomeRecommend from "./childComps/HomeRecommend";
 import HomeFeature from "./childComps/HomeFeature";
+
 import TabControl from "components/cotent/tabControl/TabControl";
 import GoodsList from "components/cotent/goods/GoodsList";
 import Scroll from "components/common/scroll/Scroll";
-import Scroll from "../../components/common/scroll/Scroll";
+
 
 export default {
   name: "Home",
