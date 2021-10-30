@@ -3,7 +3,7 @@
     <nav-bar class="home-nav">
       <div slot="nav-center">购物街</div>
     </nav-bar>
-    <scroll class="content">
+    <scroll class="content" ref="scroll">
       <home-swiper :banners="banners"/>
       <home-recommend :recommends="recommends"/>
       <home-feature/>
@@ -14,6 +14,7 @@
       />
       <goods-list :goods="showGoods"/>
     </scroll>
+    <back-top @click.native="backClick"/>
   </div>
 </template>
 
@@ -27,6 +28,7 @@ import HomeFeature from "./childComps/HomeFeature";
 import TabControl from "components/cotent/tabControl/TabControl";
 import GoodsList from "components/cotent/goods/GoodsList";
 import Scroll from "components/common/scroll/Scroll";
+import BackTop from "components/cotent/backTop/BackTop";
 
 
 export default {
@@ -38,7 +40,8 @@ export default {
     HomeFeature,
     TabControl,
     GoodsList,
-    Scroll
+    Scroll,
+    BackTop
   },
   data() {
     return {
@@ -52,8 +55,8 @@ export default {
       currentType: 'pop'
     }
   },
-  computed:{
-    showGoods(){
+  computed: {
+    showGoods() {
       return this.goods[this.currentType].list
     }
   },
@@ -82,6 +85,9 @@ export default {
           break
       }
     },
+    backClick() {
+     this.$refs.scroll.scrollTo(0,0)
+    },
 
     /**
      * 网络请求相关的方法
@@ -105,7 +111,8 @@ export default {
 
 <style scoped>
 #home {
-  padding-top: 44px;
+  position: relative;
+  height: 100vh;
 }
 
 .home-nav {
@@ -124,10 +131,14 @@ export default {
   top: 44px;
   z-index: 9;
 }
-.content{
-  height: calc(100% - 93px);
+
+.content {
   overflow: hidden;
-  margin-top: 44px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 44px;
+  bottom: 49px;
 }
 
 </style>
