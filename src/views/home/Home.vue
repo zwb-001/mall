@@ -3,7 +3,12 @@
     <nav-bar class="home-nav">
       <div slot="nav-center">购物街</div>
     </nav-bar>
-    <scroll class="content" ref="scroll">
+    <scroll class="content"
+            ref="scroll"
+            :probe-type="3"
+            @scroll="contentScroll"
+            :pull-up-load="true"
+            @pullingUp="loadMore">
       <home-swiper :banners="banners"/>
       <home-recommend :recommends="recommends"/>
       <home-feature/>
@@ -14,7 +19,7 @@
       />
       <goods-list :goods="showGoods"/>
     </scroll>
-    <back-top @click.native="backClick"/>
+    <back-top @click.native="backClick" v-show="isShowBackTop"/>
   </div>
 </template>
 
@@ -52,7 +57,8 @@ export default {
         'new': {page: 0, list: []},
         'sell': {page: 0, list: []},
       },
-      currentType: 'pop'
+      currentType: 'pop',
+      isShowBackTop: false
     }
   },
   computed: {
@@ -86,8 +92,19 @@ export default {
       }
     },
     backClick() {
-     this.$refs.scroll.scrollTo(0,0)
+      this.$refs.scroll.scrollTo(0, 0)
     },
+    contentScroll(position) {
+      //console.log(position);
+      this.isShowBackTop = -position.y > 1000
+    },
+    loadMore(){
+      //console.log('上啦加载');
+      this.getHomeGoods(this.currentType)
+      this.$refs.scroll.scroll.refresh()
+    },
+
+
 
     /**
      * 网络请求相关的方法
@@ -103,6 +120,7 @@ export default {
       getHomeGoods(type, page).then(res => {
         this.goods[type].list.push(...res.data.list)
         this.goods[type].page += 1
+        this.$refs.scroll.finishPullUp()
       })
     }
   }
