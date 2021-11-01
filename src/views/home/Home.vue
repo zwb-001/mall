@@ -77,7 +77,7 @@ export default {
   },
   mounted() {
     //3.开始监听item中图片加载完成
-    const refresh=this.debounce(this.$refs.scroll.refresh,200)
+    const refresh=this.debounce(this.$refs.scroll.refresh,50)
     this.$bus.$on("itemImageLoad",()=>{
       //console.log('....');
       //this.$refs.scroll.refresh()
