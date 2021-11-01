@@ -73,8 +73,28 @@ export default {
     this.getHomeGoods('pop')
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
+
+  },
+  mounted() {
+    //3.开始监听item中图片加载完成
+    const refresh=this.debounce(this.$refs.scroll.refresh,200)
+    this.$bus.$on("itemImageLoad",()=>{
+      //console.log('....');
+      //this.$refs.scroll.refresh()
+      refresh()
+    })
   },
   methods: {
+    //防抖函数delay为延迟多久
+    debounce(func,delay){
+      let timer=null
+      return function(...args){
+        if(timer)clearTimeout(timer)
+        timer=setTimeout(()=>{
+          func.apply(this,args)
+        },delay)
+      }
+    },
     /**
      * 事件监听相关的方法
      */

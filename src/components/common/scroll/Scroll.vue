@@ -47,16 +47,18 @@ export default {
         this.$emit('pullingUp')
       })
     }
+
   },
   methods: {
     scrollTo(x, y, time = 500) {
-      this.scroll.scrollTo(x, y, time)
+      this.scroll && this.scroll.scrollTo(x, y, time)
     },
     finishPullUp() {
       this.scroll.finishPullUp()
     },
     refresh() {
-      this.scroll.refresh()
+      //console.log('++++++');
+      this.scroll && this.scroll.refresh()
     }
   }
 }
