@@ -34,6 +34,7 @@ import TabControl from "components/cotent/tabControl/TabControl";
 import GoodsList from "components/cotent/goods/GoodsList";
 import Scroll from "components/common/scroll/Scroll";
 import BackTop from "components/cotent/backTop/BackTop";
+import {debounce} from "common/utils";
 
 
 export default {
@@ -77,7 +78,7 @@ export default {
   },
   mounted() {
     //3.开始监听item中图片加载完成
-    const refresh=this.debounce(this.$refs.scroll.refresh,50)
+    const refresh=debounce(this.$refs.scroll.refresh,50)
     this.$bus.$on("itemImageLoad",()=>{
       //console.log('....');
       //this.$refs.scroll.refresh()
@@ -85,16 +86,6 @@ export default {
     })
   },
   methods: {
-    //防抖函数delay为延迟多久
-    debounce(func,delay){
-      let timer=null
-      return function(...args){
-        if(timer)clearTimeout(timer)
-        timer=setTimeout(()=>{
-          func.apply(this,args)
-        },delay)
-      }
-    },
     /**
      * 事件监听相关的方法
      */
