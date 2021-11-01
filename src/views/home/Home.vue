@@ -98,12 +98,11 @@ export default {
       //console.log(position);
       this.isShowBackTop = -position.y > 1000
     },
-    loadMore(){
+    loadMore() {
       //console.log('上啦加载');
       this.getHomeGoods(this.currentType)
       this.$refs.scroll.scroll.refresh()
     },
-
 
 
     /**
