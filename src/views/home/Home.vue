@@ -118,7 +118,7 @@ export default {
       this.$refs.scroll.scroll.refresh()
     },
     swiperImageLoad(){
-      console.log('/////');
+      console.log(this.$refs.tabControll.$el.offsetTop);
     },
 
 

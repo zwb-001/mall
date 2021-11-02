@@ -19,9 +19,9 @@ export default {
     Swiper,
     SwiperItem
   },
-  data(){
-    return{
-      isLoad:false
+  data() {
+    return {
+      isLoad: false
     }
   },
   props: {
@@ -32,11 +32,12 @@ export default {
       }
     }
   },
-  methods:{
-    imageLoad(){
-      if(!this.isLoad)
-      this.$emit('swiperImageLoad')
-
+  methods: {
+    imageLoad() {
+      if (!this.isLoad) {
+        this.$emit('swiperImageLoad')
+        this.isLoad = true
+      }
     }
   }
 }
