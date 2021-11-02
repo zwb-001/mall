@@ -9,13 +9,12 @@
             @scroll="contentScroll"
             :pull-up-load="true"
             @pullingUp="loadMore">
-      <home-swiper :banners="banners"/>
+      <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"/>
       <home-recommend :recommends="recommends"/>
       <home-feature/>
-      <tab-control class="tab-control"
-                   :titles="['流行','新款','精选']"
+      <tab-control :titles="['流行','新款','精选']"
                    @tabClick="tabClick"
-
+                   ref="tabControll"
       />
       <goods-list :goods="showGoods"/>
     </scroll>
@@ -59,7 +58,8 @@ export default {
         'sell': {page: 0, list: []},
       },
       currentType: 'pop',
-      isShowBackTop: false
+      isShowBackTop: false,
+      tabOffsetTop: 0
     }
   },
   computed: {
@@ -84,6 +84,9 @@ export default {
       //this.$refs.scroll.refresh()
       refresh()
     })
+    //获取tabControll的offsetTop
+    //console.log(this.$refs.tabControll.$el.offsetTop);//位置不准，必须等图片加载完成
+
   },
   methods: {
     /**
@@ -113,6 +116,9 @@ export default {
       //console.log('上啦加载');
       this.getHomeGoods(this.currentType)
       this.$refs.scroll.scroll.refresh()
+    },
+    swiperImageLoad(){
+      console.log('/////');
     },
 
 
@@ -152,12 +158,6 @@ export default {
   left: 0;
   right: 0;
   top: 0;
-  z-index: 9;
-}
-
-.tab-control {
-  position: sticky;
-  top: 44px;
   z-index: 9;
 }
 
